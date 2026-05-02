@@ -1,0 +1,88 @@
+{
+  "name": "Booking",
+  "type": "object",
+  "properties": {
+    "venue_id": {
+      "type": "string",
+      "description": "ID of the booked venue"
+    },
+    "venue_title": {
+      "type": "string",
+      "description": "Title of the venue for display"
+    },
+    "venue_image": {
+      "type": "string",
+      "description": "Main image of the venue"
+    },
+    "guest_email": {
+      "type": "string",
+      "description": "Email of the guest"
+    },
+    "guest_name": {
+      "type": "string",
+      "description": "Name of the guest"
+    },
+    "host_email": {
+      "type": "string",
+      "description": "Email of the venue host"
+    },
+    "event_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the event"
+    },
+    "guest_count": {
+      "type": "number",
+      "description": "Number of guests expected"
+    },
+    "extras": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "Selected extra services"
+    },
+    "base_price": {
+      "type": "number",
+      "description": "Venue base price"
+    },
+    "extras_total": {
+      "type": "number",
+      "description": "Total for extras"
+    },
+    "total_price": {
+      "type": "number",
+      "description": "Grand total"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "confirmed",
+        "declined",
+        "cancelled",
+        "completed"
+      ],
+      "default": "pending"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Special requests or notes"
+    }
+  },
+  "required": [
+    "venue_id",
+    "guest_email",
+    "host_email",
+    "event_date",
+    "total_price"
+  ]
+}

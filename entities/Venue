@@ -1,0 +1,152 @@
+{
+  "name": "Venue",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Name of the venue"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full description of the venue"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "albercada",
+        "terraza",
+        "salon",
+        "quinta",
+        "jardin",
+        "rooftop"
+      ],
+      "description": "Type of venue"
+    },
+    "location": {
+      "type": "string",
+      "description": "City or area"
+    },
+    "address": {
+      "type": "string",
+      "description": "Full address"
+    },
+    "price_per_day": {
+      "type": "number",
+      "description": "Price per day in MXN"
+    },
+    "max_capacity": {
+      "type": "number",
+      "description": "Maximum number of guests"
+    },
+    "amenities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of amenities"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of image URLs"
+    },
+    "rating": {
+      "type": "number",
+      "description": "Average rating 1-5"
+    },
+    "review_count": {
+      "type": "number",
+      "description": "Number of reviews"
+    },
+    "host_email": {
+      "type": "string",
+      "description": "Email of the host"
+    },
+    "host_name": {
+      "type": "string",
+      "description": "Display name of the host"
+    },
+    "blocked_dates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Dates that are unavailable (ISO date strings)"
+    },
+    "extra_services": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          }
+        }
+      },
+      "description": "Optional add-on services"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "pending"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "price_per_day",
+    "max_capacity",
+    "host_email"
+  ],
+  "rls": {
+    "create": true,
+    "read": {
+      "$or": [
+        {
+          "data.status": "active"
+        },
+        {
+          "data.host_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "data.host_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "data.host_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
