@@ -21,7 +21,7 @@ const columns = [
     title: "Soporte y Legal",
     links: [
       { label: "Contacto / Ayuda", href: "https://wa.me/526623999505" },
-      { label: "Términos y Condiciones", href: "#" },
+      { label: "Terminos y Condiciones", href: "#" },
       { label: "Aviso de Privacidad", href: "https://tuspot.lat/privacy.html" },
     ],
   },
@@ -35,7 +35,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <span className="text-xl font-extrabold text-primary tracking-tight">TuSpot</span>
             <p className="mt-2 text-sm text-white/50 leading-relaxed">
-              Encuentra tu espacio ideal para cada ocasión.
+              Encuentra tu espacio ideal para cada ocasion.
             </p>
           </div>
           {columns.map((col) => (
@@ -46,14 +46,9 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    
-                     href={link.href}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-sm text-white/55 hover:text-primary transition-colors"
->
-  {link.label}
-</a>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm text-white/55 hover:text-primary transition-colors">
+                      {link.label}
+                    </a>
                   </li>
                 ))}
               </ul>
