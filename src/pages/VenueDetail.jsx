@@ -107,10 +107,11 @@ export default function VenueDetail() {
     );
   }
 
-  const handleBookNow = () => {
+ const handleBookNow = () => {
     if (!selectedDate) return;
     const dateStr = format(selectedDate, "yyyy-MM-dd");
-    navigate(`/checkout/${venue.id}?date=${dateStr}`);
+    const msg = `Hola, me interesa reservar *${venue.title}* para el dia ${dateStr}. Podrian darme mas informacion?`;
+    window.open(`https://wa.me/6622229779?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   return (
