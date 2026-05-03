@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aviso de Privacidad — TuSpot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #1a1a1a;
+      --bg-card: #222222;
+      --border: #2e2e2e;
+      --primary: #e8581a;
+      --text: #f2f2f2;
+      --muted: #888;
+      --font: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26,26,26,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      color: white;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .nav-back {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover { color: var(--primary); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #1f1a17 50%, #1a1a1a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(232,88,26,0.12);
+      border: 1px solid rgba(232,88,26,0.25);
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 99px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span { color: var(--primary); }
+
+    .hero-meta {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* SECTION */
+    .section {
+      margin-bottom: 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      animation: fadeUp 0.4s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section:nth-child(1) { animation-delay: 0.05s; }
+    .section:nth-child(2) { animation-delay: 0.10s; }
+    .section:nth-child(3) { animation-delay: 0.15s; }
+    .section:nth-child(4) { animation-delay: 0.20s; }
+    .section:nth-child(5) { animation-delay: 0.25s; }
+    .section:nth-child(6) { animation-delay: 0.30s; }
+    .section:nth-child(7) { animation-delay: 0.35s; }
+    .section:nth-child(8) { animation-delay: 0.40s; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .section-num {
+      width: 28px;
+      height: 28px;
+      background: rgba(232,88,26,0.15);
+      border: 1px solid rgba(232,88,26,0.3);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+
+    .section-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .section-body p {
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.75;
+    }
+
+    .section-body a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .section-body a:hover { text-decoration: underline; }
+
+    /* LIST */
+    .data-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 4px 0;
+    }
+
+    .data-list li {
+      list-style: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .data-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight {
+      background: rgba(232,88,26,0.08);
+      border: 1px solid rgba(232,88,26,0.2);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-size: 13.5px;
+      color: #ddd;
+      line-height: 1.7;
+    }
+
+    .highlight strong { color: var(--primary); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 3rem 1.25rem 2rem; }
+      .container { padding: 2rem 1.25rem 4rem; }
+      .section-body { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <div class="logo-icon">T</div>
+      <span class="logo-text">TuSpot</span>
+    </a>
+    <a href="/" class="nav-back">
+      ← Volver al inicio
+    </a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-tag">📄 Legal</div>
+    <h1>Aviso de <span>Privacidad</span></h1>
+    <div class="hero-meta">
+      <span>📅 Última actualización: Mayo 2026</span>
+      <span>🇲🇽 Conforme a la LFPDPPP</span>
+      <span>🔒 tuspot.lat</span>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">I</div>
+        <span class="section-title">Identidad y Domicilio del Responsable</span>
+      </div>
+      <div class="section-body">
+        <p>TuSpot (en adelante "TuSpot" o "el Responsable"), con presencia en Hermosillo, Sonora, México, es responsable del tratamiento de sus datos personales conforme a lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y su Reglamento.</p>
+        <p>Sitio web: <a href="https://tuspot.lat">tuspot.lat</a> &nbsp;|&nbsp; Contacto: <a href="mailto:contacto@tuspot.lat">contacto@tuspot.lat</a></p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">II</div>
+        <span class="section-title">Datos Personales que se Recaban</span>
+      </div>
+      <div class="section-body">
+        <p>TuSpot podrá recabar los siguientes datos personales de sus usuarios:</p>
+        <ul class="data-list">
+          <li>Nombre completo</li>
+          <li>Número de teléfono celular (WhatsApp)</li>
+          <li>Correo electrónico</li>
+          <li>Ubicación general (ciudad o municipio)</li>
+          <li>Información sobre el espacio a publicar (para hosts): dirección, capacidad, precio y fotografías del inmueble</li>
+        </ul>
+        <div class="highlight">
+          <strong>Importante:</strong> TuSpot NO recaba datos financieros, bancarios ni de tarjetas de crédito a través de su plataforma. Los pagos se coordinan directamente entre el usuario y el host mediante métodos externos (transferencia bancaria, Clip u otros acordados entre las partes).
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">III</div>
+        <span class="section-title">Finalidades del Tratamiento</span>
+      </div>
+      <div class="section-body">
+        <p>Los datos personales recabados serán utilizados para las siguientes <strong>finalidades primarias</strong>, necesarias para la prestación del servicio:</p>
+        <ul class="data-list">
+          <li>Crear y gestionar su cuenta de usuario o perfil de host en la plataforma TuSpot</li>
+          <li>Facilitar la comunicación entre usuarios interesados en rentar un espacio y los hosts que los ofrecen</li>
+          <li>Publicar y promocionar los espacios registrados en la plataforma</li>
+          <li>Responder consultas, dudas y solicitudes de reserva a través de WhatsApp u otros canales</li>
+          <li>Mejorar la experiencia de uso de la plataforma</li>
+        </ul>
+        <p><strong>Finalidades secundarias</strong> (no esenciales para el servicio):</p>
+        <ul class="data-list">
+          <li>Envío de comunicaciones informativas o promocionales sobre TuSpot</li>
+        </ul>
+        <p>Si usted no desea que sus datos sean utilizados para finalidades secundarias, puede manifestarlo enviando un correo a <a href="mailto:contacto@tuspot.lat">contacto@tuspot.lat</a>.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">IV</div>
+        <span class="section-title">Transferencia de Datos</span>
+      </div>
+      <div class="section-body">
+        <p>TuSpot no vende, cede ni transfiere sus datos personales a terceros sin su consentimiento, salvo en los casos previstos por la LFPDPPP o cuando sea necesario para la prestación del servicio — por ejemplo, compartir sus datos de contacto con el host o usuario con quien coordina una reserva.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">V</div>
+        <span class="section-title">Derechos ARCO</span>
+      </div>
+      <div class="section-body">
+        <p>Usted tiene derecho a <strong>Acceder, Rectificar, Cancelar u Oponerse</strong> (derechos ARCO) al tratamiento de sus datos personales. Para ejercer estos derechos, envíe una solicitud a:</p>
+        <div class="highlight">
+          📧 <a href="mailto:contacto@tuspot.lat">contacto@tuspot.lat</a><br><br>
+          Su solicitud deberá incluir: nombre completo, datos de contacto, descripción clara del derecho que desea ejercer y copia de identificación oficial. TuSpot dará respuesta en un plazo máximo de <strong>20 días hábiles</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">VI</div>
+        <span class="section-title">Cookies y Tecnologías de Rastreo</span>
+      </div>
+      <div class="section-body">
+        <p>El sitio web tuspot.lat puede utilizar cookies y tecnologías similares para mejorar la experiencia de navegación y analizar el uso de la plataforma. Usted puede configurar su navegador para rechazar cookies; sin embargo, esto puede limitar algunas funcionalidades del sitio.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">VII</div>
+        <span class="section-title">Cambios al Aviso de Privacidad</span>
+      </div>
+      <div class="section-body">
+        <p>TuSpot se reserva el derecho de modificar el presente Aviso de Privacidad en cualquier momento. Cualquier cambio será notificado a través del sitio web <a href="https://tuspot.lat">tuspot.lat</a>. Se recomienda revisar periódicamente este aviso.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">VIII</div>
+        <span class="section-title">Consentimiento</span>
+      </div>
+      <div class="section-body">
+        <p>Al utilizar los servicios de TuSpot, registrarse en la plataforma o proporcionar sus datos de contacto a través de cualquier canal (WhatsApp, formularios, correo electrónico u otros), usted manifiesta su consentimiento para el tratamiento de sus datos personales conforme a los términos descritos en el presente Aviso de Privacidad.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 TuSpot — Hermosillo, Sonora, México &nbsp;|&nbsp; <a href="https://tuspot.lat">tuspot.lat</a> &nbsp;|&nbsp; <a href="mailto:contacto@tuspot.lat">contacto@tuspot.lat</a></p>
+  </footer>
+
+</body>
+</html>
