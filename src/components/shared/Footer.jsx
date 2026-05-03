@@ -21,9 +21,9 @@ const columns = [
   {
     title: "Soporte y Legal",
     links: [
-      { label: "Contacto / Ayuda", href: "#" },
-      { label: "Términos y Condiciones", href: "#" },
-      { label: "Aviso de Privacidad", href: "#" },
+     { label: "Contacto / Ayuda", href: "https://wa.me/526623999505" },
+{ label: "Términos y Condiciones", href: "#" },
+     { label: "Aviso de Privacidad", href: "/privacy.html" },
     ],
   },
 ];
