@@ -48,18 +48,19 @@ export default function Footer() {
                 {col.title}
               </h4>
               <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    href={link.href}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-sm text-white/55 hover:text-primary transition-colors"
->
-  {link.label}
-</a>
-                  </li>
-                ))}
-              </ul>
+  {col.links.map((link) => (
+    <li key={link.label}>
+      
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm text-white/55 hover:text-primary transition-colors"
+      >
+        {link.label}
+      </a>
+    </li>
+  ))}
+</ul>
             </div>
           ))}
         </div>
