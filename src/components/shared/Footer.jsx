@@ -23,7 +23,7 @@ const columns = [
     links: [
      { label: "Contacto / Ayuda", href: "https://wa.me/526623999505" },
 { label: "Términos y Condiciones", href: "#" },
-     { label: "Aviso de Privacidad", href: "/privacy.html" },
+{ label: "Aviso de Privacidad", href: "https://tuspot.lat/privacy.html" },
     ],
   },
 ];
@@ -50,12 +50,13 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      to={link.href}
-                      className="text-sm text-white/55 hover:text-primary transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                    href={link.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-sm text-white/55 hover:text-primary transition-colors"
+>
+  {link.label}
+</a>
                   </li>
                 ))}
               </ul>
