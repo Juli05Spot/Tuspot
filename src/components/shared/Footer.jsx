@@ -47,13 +47,13 @@ export default function Footer() {
                 {col.links.map((link) => (
                   <li key={link.label}>
                     
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-white/55 hover:text-primary transition-colors"
-                    >
-                      {link.label}
-                    </a>
+                     href={link.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-sm text-white/55 hover:text-primary transition-colors"
+>
+  {link.label}
+</a>
                   </li>
                 ))}
               </ul>
