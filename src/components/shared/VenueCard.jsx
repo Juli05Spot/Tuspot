@@ -217,5 +217,3 @@ export default function VenueCard({ venue, index = 0 }) {
     </motion.div>
   );
 }
-            <img
-              src={mainImage}
