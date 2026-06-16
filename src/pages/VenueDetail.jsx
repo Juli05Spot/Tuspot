@@ -1,5 +1,4 @@
-const db = globalThis.__B44_DB__ || { auth:{ isAuthenticated: async()=>false, me: async()=>null }, entities:new Proxy({}, { get:()=>({ filter:async()=>[], get:async()=>null, create:async()=>({}), update:async()=>({}), delete:async()=>({}) }) }), integrations:{ Core:{ UploadFile:async()=>({ file_url:'' }) } } };
-
+import '@/lib/initDb'
 import React, { useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -15,6 +14,8 @@ import BookingCalendar from "../components/venue/BookingCalendar";
 import GuestReviews from "../components/venue/GuestReviews";
 import { format } from "date-fns";
 
+const db = globalThis.__B44_DB__;
+
 const categoryLabels = {
   albercada: "Albercada",
   terraza: "Terraza",
@@ -29,52 +30,20 @@ export default function VenueDetail() {
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(null);
 
- const VENUES_DATA = [
-  {
-    id: "1",
-    title: "Local de Eventos Atardeceres",
-    description: "Hermoso espacio para eventos con alberca, area de asados y cocina equipada. Ideal para albercadas, fiestas y baby showers. Vista al atardecer unica en Hermosillo.",
-    location: "Villa Hermosa, Hermosillo, Sonora",
-    category: "albercada",
-    price_per_day: 8500,
-    max_capacity: 100,
-    rating: 5.0,
-    review_count: 0,
-    status: "active",
-    host_name: "TuSpot",
-    amenities: ["Alberca", "Area de asados", "Cocina equipada", "Mesas y sillas", "Manteles", "Estacionamiento", "Area refrigerada"],
-    images: [
-      "https://i.ibb.co/1fhHwmkZ/image.png",
-      "https://i.ibb.co/KxBMVvDb/image.png",
-      "https://i.ibb.co/GQQ1YfhQ/image.png",
-      "https://i.ibb.co/Rkrgwk1r/image.png",
-      "https://i.ibb.co/MybVqG8Y/image.png",
-      "https://i.ibb.co/0pZV90bc/image.png",
-      "https://i.ibb.co/XrDfNTjs/image.png",
-      "https://i.ibb.co/tww6ygL1/image.png"
-    ],
-    latitude: 29.0729,
-    longitude: -110.9559,
-    blocked_dates: [],
-    extra_services: [],
-  }
-];
-
   const { data: venue, isLoading } = useQuery({
     queryKey: ["venue", id],
-    queryFn: () => Promise.resolve(VENUES_DATA.find(v => v.id === id)),
-    initialData: VENUES_DATA.find(v => v.id === id),
+    queryFn: () => db.entities.Venue.get(id),
   });
 
   const { data: bookings } = useQuery({
     queryKey: ["venue-bookings", id],
-    queryFn: () => Promise.resolve([]),
+    queryFn: () => db.entities.Booking.filter({ venue_id: id }),
     initialData: [],
   });
 
   const { data: reviews } = useQuery({
     queryKey: ["venue-reviews", id],
-    queryFn: () => Promise.resolve([]),
+    queryFn: () => db.entities.Review.filter({ venue_id: id }),
     initialData: [],
   });
 
