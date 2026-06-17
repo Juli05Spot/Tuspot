@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, MapPin, Calendar, Users, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const QUICK_CHIPS = [
   { emoji: "🎉", label: "Fiesta", category: "salon" },
@@ -24,12 +24,22 @@ const GUEST_OPTIONS = [
   { label: "Más de 200 personas", value: "200+" },
 ];
 
+// Fotos reales de espacios publicados en TuSpot — anclan el hero en el
+// producto real en lugar de un fondo abstracto genérico.
+const BG_PHOTOS = [
+  "https://i.ibb.co/1fhHwmkZ/image.png",
+  "https://i.ibb.co/KxBMVvDb/image.png",
+  "https://i.ibb.co/GQQ1YfhQ/image.png",
+  "https://i.ibb.co/Rkrgwk1r/image.png",
+];
+
 export default function HeroSection() {
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [guests, setGuests] = useState("");
   const [activeField, setActiveField] = useState(null);
   const navigate = useNavigate();
+  const prefersReducedMotion = useReducedMotion();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -49,9 +59,54 @@ export default function HeroSection() {
   }, [activeField]);
 
   return (
-    <section className="relative overflow-hidden min-h-[92vh] flex items-center" style={{ background: "radial-gradient(ellipse at 50% 40%, #2a2a2a 0%, #1c1c1c 55%, #141414 100%)" }}>
-      {/* Subtle glow accents */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-primary/10 rounded-full blur-[120px] z-0 pointer-events-none" />
+    <section className="relative overflow-hidden min-h-[92vh] flex items-center">
+      {/* ── Fondo: collage de espacios reales + overlay oscuro ── */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
+          {BG_PHOTOS.map((src) => (
+            <motion.div
+              key={src}
+              className="relative overflow-hidden"
+              initial={{ scale: 1.08 }}
+              animate={prefersReducedMotion ? {} : { scale: 1 }}
+              transition={{ duration: 20, ease: "easeOut" }}
+            >
+              <img src={src} alt="" className="w-full h-full object-cover" />
+            </motion.div>
+          ))}
+        </div>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(10,10,10,0.90) 0%, rgba(14,14,14,0.94) 45%, rgba(10,10,10,0.99) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 35%, rgba(242,107,60,0.18) 0%, transparent 60%)",
+          }}
+        />
+      </div>
+
+      {/* Backdrop que oscurece todo el fondo (incluidos los chips) cuando
+          hay un dropdown abierto — esto es lo que arregla la superposición:
+          en vez de que el calendario flote suelto sobre el contenido de
+          abajo, ahora hay un velo intencional que separa ambos planos. */}
+      <AnimatePresence>
+        {activeField && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-[2px]"
+            onClick={() => setActiveField(null)}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Content */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
@@ -77,7 +132,7 @@ export default function HeroSection() {
           className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white text-center leading-tight tracking-tight mb-5"
         >
           Reserva espacios para eventos{" "}
-          <span className="text-primary">en minutos,</span>
+          <span className="text-primary font-serif italic font-bold">en minutos</span>,
           <br className="hidden sm:block" />
           {" "}sin complicaciones
         </motion.h1>
@@ -102,7 +157,8 @@ export default function HeroSection() {
           className="mb-8"
         >
           {/* Desktop */}
-          <div className="hidden sm:flex items-stretch rounded-2xl overflow-visible shadow-2xl border border-white/10"
+          <div
+            className="hidden sm:flex items-stretch rounded-2xl overflow-visible shadow-2xl border border-white/10 relative"
             style={{ backgroundColor: "rgba(15,15,15,0.85)", backdropFilter: "blur(20px)" }}
           >
             {/* Ubicación */}
@@ -292,6 +348,18 @@ export default function HeroSection() {
           ))}
         </motion.div>
       </div>
+
+      {/* Borde inferior tipo "papel picado" — guiño sutil a la decoración
+          mexicana de fiestas, marcando la transición hacia el resto de la
+          página sin recurrir a una línea recta genérica. */}
+      <svg
+        className="absolute bottom-0 left-0 w-full h-5 sm:h-7 z-10 text-background fill-current"
+        viewBox="0 0 200 10"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path d="M0,0 Q5,10 10,0 T20,0 T30,0 T40,0 T50,0 T60,0 T70,0 T80,0 T90,0 T100,0 T110,0 T120,0 T130,0 T140,0 T150,0 T160,0 T170,0 T180,0 T190,0 T200,0 L200,10 L0,10 Z" />
+      </svg>
     </section>
   );
 }
